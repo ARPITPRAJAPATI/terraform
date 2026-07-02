@@ -40,25 +40,25 @@ resource "aws_security_group" "my_security_group" {
 }
 #ec2 instance
 
-resource "aws_instance" "my_instance" {
-        for_each = tomap({
-            "terra-form-micro" = "t2.micro"
-            "terra-form-small" = "t2.small"
-        })
-        key_name = aws_key_pair.my_key.key_name
-        security_groups   = [aws_security_group.my_security_group.name]
-        instance_type = each.value
-        ami = var.ec2_ami_id
-        # user_data = file("install_nginx.sh")
-        root_block_device {
-          volume_size = var.env=="prd" ? 20 : var.ec2_root_storage
-          volume_type = "gp3"
-        }
-        tags = {
-            Name = each.key
-        }
-}
-resource "aws_instance" "my_instance2" {
-        ami = "unknown"
-        instance_type = "unknown"
-}
+# resource "aws_instance" "my_instance" {
+#         for_each = tomap({
+#             "terra-form-micro" = "t2.micro"
+#             "terra-form-small" = "t2.small"
+#         })
+#         key_name = aws_key_pair.my_key.key_name
+#         security_groups   = [aws_security_group.my_security_group.name]
+#         instance_type = each.value
+#         ami = var.ec2_ami_id
+#         # user_data = file("install_nginx.sh")
+#         root_block_device {
+#           volume_size = var.env=="prd" ? 20 : var.ec2_root_storage
+#           volume_type = "gp3"
+#         }
+#         tags = {
+#             Name = each.key
+#         }
+# }
+# resource "aws_instance" "my_instance2" {
+#         ami = "unknown"
+#         instance_type = "unknown"
+# }
