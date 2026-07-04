@@ -1,0 +1,11 @@
+aws/
+awscliv2.zip
+terra-key
+terra-key.pub
+*.tfstate
+*.tfstate.*
+.terraform/
+*.pem
+*.key
+.env
+.env.*
